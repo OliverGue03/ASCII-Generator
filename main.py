@@ -17,14 +17,18 @@ if not pictures:
 print("-------LIST OF ALL PICTURES-------\n")
 for i, picture in enumerate(pictures, start=1):
     print(f"{i}.    {picture}")
+    print("0.    EXIT")
 print("----------------------------------\n")
 print("---------CHOOSE A PICTURE---------\n")
 while not choice:
     try:
         choice = int(input("Input the number of the picture you want to turn into an ASCII:\n"))
-        if choice > len(pictures) or choice <= 0:
-            print(f"Choose a number between 1 and {len(pictures)}")
+        if choice == 0:
+             break
+        elif choice > len(pictures) or choice < 0:
+            print(f"Choose a number between 0 and {len(pictures)}")
             choice = None
     except:
-        raise ValueError("Input a correct value.")
+        print("Input a correct value.")
 print(choice)
+print("Goodbye!")
