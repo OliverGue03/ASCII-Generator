@@ -4,12 +4,14 @@ from generator import generate_ascii
 
 # Image Files to look up in directory
 DATA_TYPES = ["*.png", "*.jpg", "*.webp", "*.gif"]
+SIZES = {"S": 100, "M": 200, "L": 400}
 
 def main():
     # Get Pictures
     pictures = []
     choice = None
-
+    size = 0
+    
     for type in DATA_TYPES:
             pictures += glob.glob(type)
     if not pictures:
@@ -35,8 +37,16 @@ def main():
         except:
             print("Input a correct value.")
 
+    while size == 0:
+        try:
+            size = input("What size should your ASCII have? (S, M or L)\n").upper()
+            if size in SIZES.keys:
+                size = SIZES[size]
+        except:
+            print("Input a correct value.")
+
     # ASCII-fy the image
-    generate_ascii(pictures[choice-1])
+    generate_ascii(pictures[choice-1], size)
     
 if __name__ == "__main__":
     main()
